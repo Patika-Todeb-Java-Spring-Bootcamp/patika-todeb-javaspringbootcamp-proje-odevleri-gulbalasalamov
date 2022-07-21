@@ -5,6 +5,12 @@ This repository is dedicated to demonstrate weekly progress of project implement
 For theorytical homework, please see: 
 https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-teorik-odevler-gulbalasalamov
 
+---
+
+#### Project Brief
+
+---
+
 The purpose of this project is to build a potential backend system for second-hand goods exchange app.
 
 The project aims to:
@@ -53,7 +59,7 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ---
 
-#### Use-case diagram
+#### Use-Case Diagram
 
 ---
 
