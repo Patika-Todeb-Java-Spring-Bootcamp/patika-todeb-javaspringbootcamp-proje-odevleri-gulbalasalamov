@@ -46,15 +46,15 @@ This project omplementats Spring Boot framework with given dependencies:
 | 8                 | seller   | add/update/delete item               | I can advertise my items and let buyers know the availability of stocks                                                                     |  
 | 9                 | seller   | answer question(s)                   | I can chat with buyer to provide information about items and negotiate the price                                                            |     
 | 10                | seller   | view number of order requests        | I can choose among them                                                                                                                     |
-| 10                | seller   | confirm order                        | I can accept order and notify other interested buyers that the item is sold out. This will automatically reject all pending order requests. |
-| 11                | seller   | register to system                   | I can create a seller account                                                                                                               |
-| 12                | seller   | login & logout                       | I can use the system                                                                                                                        |
-| 13                | seller   | communicate admin                    | I can report an issue about buyer or respond admin                                                                                          |
-| 14                | admin    | register to system                   | I can create an admin account                                                                                                               |
-| 15                | admin    | login & logout                       | I can use the system                                                                                                                        |
-| 16                | admin    | communicate                          | I can track and handle reported issues from seller and buyers                                                                               | 
-| 17                | admin    | add/update/delete categories         | I can manage the correctness of data associated with the items                                                                              |  
-| 18                | admin    | activate/deactivate seller and buyer | I can prevent some users from doing operations                                                                                              | 
+| 11                | seller   | confirm order                        | I can accept order and notify other interested buyers that the item is sold out. This will automatically reject all pending order requests. |
+| 12                | seller   | register to system                   | I can create a seller account                                                                                                               |
+| 13                | seller   | login & logout                       | I can use the system                                                                                                                        |
+| 14                | seller   | communicate admin                    | I can report an issue about buyer or respond admin                                                                                          |
+| 15                | admin    | register to system                   | I can create an admin account                                                                                                               |
+| 16                | admin    | login & logout                       | I can use the system                                                                                                                        |
+| 17                | admin    | communicate                          | I can track and handle reported issues from seller and buyers                                                                               | 
+| 18                | admin    | add/update/delete categories         | I can manage the correctness of data associated with the items                                                                              |  
+| 19                | admin    | activate/deactivate seller and buyer | I can prevent some users from doing operations                                                                                              | 
 
 
 ---
