@@ -1,6 +1,10 @@
-### Project: Second-hand shopping app
+# Project: Second-hand shopping app
 
-The purpose of this project is to demonstrate a potential backend system for second-hand goods exchange app.
+This repository is dedicated to demonstrate weekly progress of project implementation in bootcamp.
+For theorytical homework, please see: 
+https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-teorik-odevler-gulbalasalamov
+
+The purpose of this project is to build a potential backend system for second-hand goods exchange app.
 
 The project aims to:
 
