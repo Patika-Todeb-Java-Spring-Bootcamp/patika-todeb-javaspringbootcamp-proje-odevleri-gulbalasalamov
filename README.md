@@ -1,6 +1,7 @@
 # Project: Second-hand shopping app
 
 This repository is dedicated to demonstrate weekly progress of project implementation in bootcamp.
+
 For theorytical homework, please see: 
 https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-teorik-odevler-gulbalasalamov
 
