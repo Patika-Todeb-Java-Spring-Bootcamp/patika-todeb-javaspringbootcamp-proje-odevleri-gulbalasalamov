@@ -52,7 +52,7 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ---
 
-![](https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-proje-odevleri-gulbalasalamov/blob/master/docs/entity-relationship-diagram-draft.png)
+![](https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-proje-odevleri-gulbalasalamov/blob/master/docs/use-case-diagram-draft.png)
 
 ---
 
