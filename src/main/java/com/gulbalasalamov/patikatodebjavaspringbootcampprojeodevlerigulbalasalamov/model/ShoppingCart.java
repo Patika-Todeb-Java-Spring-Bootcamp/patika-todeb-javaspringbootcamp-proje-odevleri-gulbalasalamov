@@ -1,5 +1,4 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +19,7 @@ public class ShoppingCart {
     @JoinColumn(name="buyer")
     private Buyer buyer;
 
-    @OneToMany(mappedBy = "shopping_cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 
 
