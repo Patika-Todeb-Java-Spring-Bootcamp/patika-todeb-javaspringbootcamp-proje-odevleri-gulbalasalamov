@@ -28,7 +28,8 @@ public class Item {
     @ManyToMany(mappedBy = "items",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Order> orders;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Category category;
 }

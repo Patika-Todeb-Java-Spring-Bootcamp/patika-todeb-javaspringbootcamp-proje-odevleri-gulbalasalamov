@@ -20,12 +20,13 @@ public class Seller {
     private String email;
     private boolean isActive;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "seller_item",
-            joinColumns = @JoinColumn(name = "seller_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id")
-    )
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "seller_item",
+//            joinColumns = @JoinColumn(name = "seller_id"),
+//            inverseJoinColumns = @JoinColumn(name = "item_id")
+//    )
+    @ManyToMany(mappedBy = "seller",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Item> items;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
