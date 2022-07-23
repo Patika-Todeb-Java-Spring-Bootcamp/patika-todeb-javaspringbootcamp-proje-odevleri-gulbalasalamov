@@ -1,4 +1,4 @@
-package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model;
+package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
