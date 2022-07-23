@@ -1,4 +1,4 @@
-package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model;
+package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import lombok.*;
 
@@ -7,9 +7,6 @@ import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
