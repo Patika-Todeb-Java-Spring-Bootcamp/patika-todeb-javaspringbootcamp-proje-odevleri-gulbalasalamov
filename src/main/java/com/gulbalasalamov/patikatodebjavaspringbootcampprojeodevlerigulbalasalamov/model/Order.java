@@ -2,8 +2,7 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -22,6 +21,7 @@ import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "orders") // this will give entity name to database
 public class Order {

@@ -1,6 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "item") // this will give entity name to database
 
 public class Item {
