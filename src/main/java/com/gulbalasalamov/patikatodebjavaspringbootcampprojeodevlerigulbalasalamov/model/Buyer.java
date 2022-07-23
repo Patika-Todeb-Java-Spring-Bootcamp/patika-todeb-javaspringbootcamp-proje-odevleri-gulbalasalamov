@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,9 +27,7 @@ public class Buyer {
     private String email;
     private boolean isActive;
 
-    @OneToMany(mappedBy = "buyer",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Message> messages;
-
-    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "buyer_id")
     private List<Order> orders;
 }
