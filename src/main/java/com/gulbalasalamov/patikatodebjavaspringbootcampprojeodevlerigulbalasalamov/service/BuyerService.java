@@ -8,6 +8,7 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,7 +26,7 @@ public class BuyerService {
         );
     }
 
-    public List<BuyerDTO> getAllOrders(){
+    public List<BuyerDTO> getAllOrders() {
         return buyerRepository.findAll()
                 .stream()
                 .map(BuyerMapper::toDto)
@@ -37,5 +38,24 @@ public class BuyerService {
         buyerRepository.save(buyer);
     }
 
+    public void updateBuyer(Long id, BuyerDTO buyerDTO) {
+        BuyerDTO buyerDTO1 = getAllOrders().stream()
+                .filter(b -> b.getBuyerId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new BuyerNotFoundException("Couldn't update. Buyer with id: " + id + " not found"));
+
+//        Optional<Buyer> buyerById = buyerRepository.findById(id);
+//        Buyer buyer = buyerById.get();
+//        if (!buyerById.isPresent()) {
+//            return null;
+//        }
+        buyerDTO1.setFirstName(buyerDTO.getFirstName());
+        buyerDTO1.setLastName(buyerDTO.getLastName());
+        buyerDTO1.setEmail(buyerDTO.getEmail());
+        buyerDTO1.setPhoneNumber(buyerDTO.getPhoneNumber());
+        buyerDTO1.setActive(buyerDTO.isActive());
+        Buyer buyer = BuyerMapper.toEntity(buyerDTO1);
+        buyerRepository.save(buyer);
+    }
 
 }

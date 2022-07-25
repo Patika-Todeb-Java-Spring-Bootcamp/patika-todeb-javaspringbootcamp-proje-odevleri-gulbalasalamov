@@ -32,10 +32,13 @@ public class BuyerController {
     //Raw use warning
     public ResponseEntity createBuyer(@RequestBody BuyerDTO buyerDTO) {
         buyerService.createBuyer(buyerDTO);
-//        if (buyer == null) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body("Buyer could not be created");
-//        }
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @PutMapping("update/{id}")
+    public ResponseEntity updateBuyer(@PathVariable Long id,@RequestBody BuyerDTO buyerDTO) {
+        buyerService.updateBuyer(id,buyerDTO);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }
