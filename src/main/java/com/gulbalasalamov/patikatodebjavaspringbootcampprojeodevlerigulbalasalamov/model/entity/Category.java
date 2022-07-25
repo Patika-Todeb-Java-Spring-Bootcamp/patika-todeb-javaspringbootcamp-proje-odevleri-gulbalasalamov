@@ -22,5 +22,5 @@ public class Category {
     @JoinColumn(name = "category_id")
     private List<Item> items;
 
-    private String name;
+    private CategoryType categoryType;
 }

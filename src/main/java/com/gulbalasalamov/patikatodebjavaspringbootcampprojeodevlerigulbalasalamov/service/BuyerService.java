@@ -1,12 +1,15 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.service;
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.BuyerNotFoundException;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.BuyerDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BuyerService {
@@ -16,18 +19,27 @@ public class BuyerService {
         this.buyerRepository = buyerRepository;
     }
 
-    protected Buyer findBuyerById(Long id) {
-        return buyerRepository.findById(id).orElseThrow(() ->
-                new BuyerNotFoundException("Couldn't find buyer for id: " + id));
+    public BuyerDTO getCustomerById(Long id) {
+        return BuyerMapper.toDto(
+                buyerRepository.findById(id).orElseThrow(() ->
+                        new BuyerNotFoundException("Related buyer with id : " + id + "not found"))
+        );
     }
 
-    protected List<Buyer> getAllOrders(){
-        return buyerRepository.findAll();
+    public List<BuyerDTO> getAllOrders(){
+        return buyerRepository.findAll()
+                .stream()
+                .map(BuyerMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-//    public Buyer update(){
-//        return buyerRepository.find
-//    }
+    public Buyer createBuyer(BuyerDTO buyerDTO) {
+        Buyer buyer = BuyerMapper.toEntity(buyerDTO);
+        return buyerRepository.save(buyer);
+    }
+//
+//    public Buyer update(String firstName, String lastName,)
+
 
 
 }

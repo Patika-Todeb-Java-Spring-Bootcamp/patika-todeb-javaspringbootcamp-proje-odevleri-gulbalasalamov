@@ -19,7 +19,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "item_id")
     private Long itemId;
+
     private String name;
-    private int quantity;
+    private String description;
+    private double price;
 
 }

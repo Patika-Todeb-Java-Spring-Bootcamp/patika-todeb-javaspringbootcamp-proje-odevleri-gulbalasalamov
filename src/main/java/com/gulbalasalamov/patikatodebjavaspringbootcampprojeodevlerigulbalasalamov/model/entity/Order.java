@@ -1,7 +1,6 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -26,7 +25,7 @@ public class Order {
     @CreationTimestamp
     @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "order_date", nullable = false)
-    private Date date;
+    private Date dateOrdered;
 
     @Column(name = "is_confirmed")
     private boolean isConfirmed;

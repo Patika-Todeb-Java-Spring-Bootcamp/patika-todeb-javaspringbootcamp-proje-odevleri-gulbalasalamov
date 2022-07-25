@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "buyer") // this will give entity name to database
+@Table(name = "buyer")
 public class Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,9 @@ public class Buyer {
     private String firstName;
     private String lastName;
     private String email;
+    private String phoneNumber;
+    private String address;
+    private double balance;
     private boolean isActive;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
