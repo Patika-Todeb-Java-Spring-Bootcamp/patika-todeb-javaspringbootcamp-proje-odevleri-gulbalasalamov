@@ -6,9 +6,9 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +19,7 @@ public class BuyerService {
         this.buyerRepository = buyerRepository;
     }
 
-    public BuyerDTO getCustomerById(Long id) {
+    public BuyerDTO getBuyerById(Long id) {
         return BuyerMapper.toDto(
                 buyerRepository.findById(id).orElseThrow(() ->
                         new BuyerNotFoundException("Related buyer with id : " + id + "not found"))
@@ -57,5 +57,8 @@ public class BuyerService {
         Buyer buyer = BuyerMapper.toEntity(buyerDTO1);
         buyerRepository.save(buyer);
     }
-
+    public void deleteBuyer(Long id) {
+        Buyer buyer = buyerRepository.findById(id).orElseThrow(() -> new BuyerNotFoundException("Related buyer with id : " + id + "not found"));
+        buyerRepository.delete(buyer);
+    }
 }

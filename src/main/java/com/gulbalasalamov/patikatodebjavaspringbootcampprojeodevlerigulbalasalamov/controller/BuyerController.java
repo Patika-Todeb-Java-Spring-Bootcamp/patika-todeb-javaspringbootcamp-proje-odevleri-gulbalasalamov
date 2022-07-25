@@ -1,7 +1,6 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.controller;
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.BuyerDTO;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.service.BuyerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class BuyerController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<BuyerDTO> getBuyerById(@PathVariable long id) {
-        return ResponseEntity.ok(buyerService.getCustomerById(id));
+        return ResponseEntity.ok(buyerService.getBuyerById(id));
     }
 
     @PostMapping("/create")
@@ -36,9 +35,14 @@ public class BuyerController {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity updateBuyer(@PathVariable Long id,@RequestBody BuyerDTO buyerDTO) {
-        buyerService.updateBuyer(id,buyerDTO);
+    public ResponseEntity updateBuyer(@PathVariable Long id, @RequestBody BuyerDTO buyerDTO) {
+        buyerService.updateBuyer(id, buyerDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteBuyer(@PathVariable Long id) {
+        buyerService.deleteBuyer(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Related buyer was deleted successfully");
+    }
 }
