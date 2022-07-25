@@ -31,11 +31,11 @@ public class BuyerController {
     @PostMapping("/create")
     //Raw use warning
     public ResponseEntity createBuyer(@RequestBody BuyerDTO buyerDTO) {
-        Buyer buyer = buyerService.createBuyer(buyerDTO);
-        if (buyer == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Buyer could not be created");
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(buyer);
+        buyerService.createBuyer(buyerDTO);
+//        if (buyer == null) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body("Buyer could not be created");
+//        }
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

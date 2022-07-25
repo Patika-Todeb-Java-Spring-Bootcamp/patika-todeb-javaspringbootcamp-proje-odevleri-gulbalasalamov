@@ -5,7 +5,6 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,13 +32,10 @@ public class BuyerService {
                 .collect(Collectors.toList());
     }
 
-    public Buyer createBuyer(BuyerDTO buyerDTO) {
+    public void createBuyer(BuyerDTO buyerDTO) {
         Buyer buyer = BuyerMapper.toEntity(buyerDTO);
-        return buyerRepository.save(buyer);
+        buyerRepository.save(buyer);
     }
-//
-//    public Buyer update(String firstName, String lastName,)
-
 
 
 }
