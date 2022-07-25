@@ -17,5 +17,4 @@ public class BuyerDTO {
     private String email;
     private String phoneNumber;
     private boolean isActive;
-
 }
