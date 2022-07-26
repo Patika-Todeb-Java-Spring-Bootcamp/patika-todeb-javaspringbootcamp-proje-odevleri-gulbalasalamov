@@ -24,7 +24,8 @@ public class BuyerController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<BuyerDTO> getBuyerById(@PathVariable long id) {
-        return ResponseEntity.ok(buyerService.getBuyerById(id));
+        buyerService.getBuyerById(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping("/create")

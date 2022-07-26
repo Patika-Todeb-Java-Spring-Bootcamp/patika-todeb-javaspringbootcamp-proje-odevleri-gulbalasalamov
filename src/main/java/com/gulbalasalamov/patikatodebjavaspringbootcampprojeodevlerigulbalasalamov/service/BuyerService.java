@@ -19,15 +19,15 @@ public class BuyerService {
         this.buyerRepository = buyerRepository;
     }
 
-    protected Optional<Buyer> findBuyerDTOById(Long id) {
-        return buyerRepository.findById(id);
+    protected Optional<Buyer> findBuyerById(Long id) {
+        Buyer buyer = buyerRepository.findById(id).orElseThrow(() ->
+                new BuyerNotFoundException("Related buyer with id : " + id + " not found"));
+        return Optional.of(buyer);
     }
 
-    public BuyerDTO getBuyerById(Long id) {
-        return BuyerMapper.toDto(
-                buyerRepository.findById(id).orElseThrow(() ->
-                        new BuyerNotFoundException("Related buyer with id : " + id + "not found"))
-        );
+    public void getBuyerById(Long id) {
+        Optional<Buyer> buyerById = findBuyerById(id);
+        buyerById.ifPresent(BuyerMapper::toDto);
     }
 
     public List<BuyerDTO> getAllOrders() {
@@ -47,15 +47,14 @@ public class BuyerService {
 //                .filter(b -> b.getBuyerId().equals(id))
 //                .findFirst()
 //                .orElseThrow(() -> new BuyerNotFoundException("Couldn't update. Buyer with id: " + id + " not found"));
-
-        if (getBuyerById(id).getBuyerId() == null) {
-            throw new BuyerNotFoundException("Buyer with " + id + "not found. Couldn't delete");
+        Optional<Buyer> buyerById = findBuyerById(id);
+        if (buyerById.isPresent()) {
+            buyerRepository.save(BuyerMapper.toEntity(buyerDTO));
         }
-        buyerRepository.save(BuyerMapper.toEntity(buyerDTO));
     }
 
     public void deleteBuyer(Long id) {
-        Buyer buyer = buyerRepository.findById(id).orElseThrow(() -> new BuyerNotFoundException("Related buyer with id : " + id + "not found"));
-        buyerRepository.delete(buyer);
+        Optional<Buyer> buyer = findBuyerById(id);
+        buyer.ifPresent(buyerRepository::delete);
     }
 }
