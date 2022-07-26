@@ -18,7 +18,6 @@ public class Buyer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "buyer_id")
     private Long buyerId;
-
     private String firstName;
     private String lastName;
     private String email;

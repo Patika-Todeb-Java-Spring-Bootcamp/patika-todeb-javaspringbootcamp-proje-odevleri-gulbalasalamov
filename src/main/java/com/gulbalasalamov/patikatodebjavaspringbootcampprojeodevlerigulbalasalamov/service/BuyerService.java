@@ -25,9 +25,9 @@ public class BuyerService {
         return Optional.of(buyer);
     }
 
-    public void getBuyerById(Long id) {
-        Optional<Buyer> buyerById = findBuyerById(id);
-        buyerById.ifPresent(BuyerMapper::toDto);
+    public BuyerDTO getBuyerDTOById(Long id) {
+        Optional<Buyer> buyerOptional = findBuyerById(id);
+        return BuyerMapper.toDto(buyerOptional.get());
     }
 
     public List<BuyerDTO> getAllOrders() {
@@ -38,8 +38,7 @@ public class BuyerService {
     }
 
     public void createBuyer(BuyerDTO buyerDTO) {
-        Buyer buyer = BuyerMapper.toEntity(buyerDTO);
-        buyerRepository.save(buyer);
+        buyerRepository.save(BuyerMapper.toEntity(buyerDTO));
     }
 
     public void updateBuyer(Long id, BuyerDTO buyerDTO) {
@@ -47,14 +46,21 @@ public class BuyerService {
 //                .filter(b -> b.getBuyerId().equals(id))
 //                .findFirst()
 //                .orElseThrow(() -> new BuyerNotFoundException("Couldn't update. Buyer with id: " + id + " not found"));
-        Optional<Buyer> buyerById = findBuyerById(id);
-        if (buyerById.isPresent()) {
-            buyerRepository.save(BuyerMapper.toEntity(buyerDTO));
-        }
+//        Optional<Buyer> buyerById = findBuyerById(id);
+
+        Optional<Buyer> buyerOptional = findBuyerById(id);
+        buyerOptional.ifPresent(buyer -> {
+            buyer.setBuyerId(buyerDTO.getBuyerId());
+            buyer.setFirstName(buyerDTO.getFirstName());
+            buyer.setLastName(buyerDTO.getLastName());
+            buyer.setEmail(buyerDTO.getEmail());
+            buyer.setPhoneNumber(buyerDTO.getPhoneNumber());
+            buyerRepository.save(buyer);
+        });
     }
 
     public void deleteBuyer(Long id) {
-        Optional<Buyer> buyer = findBuyerById(id);
-        buyer.ifPresent(buyerRepository::delete);
+       Optional<Buyer> buyerById = findBuyerById(id);
+        buyerById.ifPresent(buyerRepository::delete);
     }
 }
