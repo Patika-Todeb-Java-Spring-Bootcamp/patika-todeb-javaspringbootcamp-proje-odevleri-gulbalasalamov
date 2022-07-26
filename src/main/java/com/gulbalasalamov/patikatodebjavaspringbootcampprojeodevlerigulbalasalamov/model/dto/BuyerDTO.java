@@ -1,7 +1,9 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto;
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -17,4 +19,12 @@ public class BuyerDTO {
     private String email;
     private String phoneNumber;
     private boolean isActive;
+
+    public BuyerDTO(Long buyerId, String firstName, String lastName, String email, String phoneNumber) {
+        this.buyerId = buyerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 }

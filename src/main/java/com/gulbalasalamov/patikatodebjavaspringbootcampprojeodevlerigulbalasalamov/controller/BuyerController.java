@@ -17,6 +17,11 @@ public class BuyerController {
         this.buyerService = buyerService;
     }
 
+    @GetMapping
+    public String welcome(){
+        return "Hello. This is BuyerService speaking :=)";
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<BuyerDTO>> getAllBuyers() {
         return new ResponseEntity(buyerService.getAllOrders(), HttpStatus.OK);
@@ -24,8 +29,9 @@ public class BuyerController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<BuyerDTO> getBuyerById(@PathVariable long id) {
-        buyerService.getBuyerById(id);
-        return new ResponseEntity(HttpStatus.OK);
+        BuyerDTO buyerById = buyerService.getBuyerDTOById(id);
+        //return ResponseEntity.status(HttpStatus.OK).body(buyerById);
+        return new ResponseEntity(buyerById,HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -41,9 +47,13 @@ public class BuyerController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+//    @PatchMapping("/{id}")
+
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteBuyer(@PathVariable Long id) {
         buyerService.deleteBuyer(id);
+        //return ResponseEntity.ok().build();
         return ResponseEntity.status(HttpStatus.OK).body("Related buyer was deleted successfully");
     }
 }
