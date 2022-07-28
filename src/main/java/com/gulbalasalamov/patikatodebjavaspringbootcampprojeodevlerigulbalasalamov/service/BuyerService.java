@@ -3,8 +3,9 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.BuyerNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.BuyerDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.BuyerMapper;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,41 +15,38 @@ import java.util.stream.Collectors;
 @Service
 public class BuyerService {
     private final BuyerRepository buyerRepository;
+    private final OrderRepository orderRepository;
 
-    public BuyerService(BuyerRepository buyerRepository) {
+    public BuyerService(BuyerRepository buyerRepository,OrderRepository orderRepository) {
         this.buyerRepository = buyerRepository;
+        this.orderRepository = orderRepository;
     }
 
     protected Optional<Buyer> findBuyerById(Long id) {
-        Buyer buyer = buyerRepository.findById(id).orElseThrow(() ->
+        var buyer = buyerRepository.findById(id).orElseThrow(() ->
                 new BuyerNotFoundException("Related buyer with id : " + id + " not found"));
         return Optional.of(buyer);
     }
 
-    public BuyerDTO getBuyerDTOById(Long id) {
-        Optional<Buyer> buyerOptional = findBuyerById(id);
-        return BuyerMapper.toDto(buyerOptional.get());
+    public BuyerDTO getBuyerById(Long id) {
+        var buyerById = findBuyerById(id);
+        return Mapper.toDto(buyerById.get());
     }
 
-    public List<BuyerDTO> getAllOrders() {
+    public List<BuyerDTO> getAllBuyers() {
         return buyerRepository.findAll()
                 .stream()
-                .map(BuyerMapper::toDto)
+                .map(Mapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    public void createBuyer(BuyerDTO buyerDTO) {
-        buyerRepository.save(BuyerMapper.toEntity(buyerDTO));
+    public void addBuyer(BuyerDTO buyerDTO) {
+        buyerRepository.save(Mapper.toEntity(buyerDTO));
     }
 
     public void updateBuyer(Long id, BuyerDTO buyerDTO) {
-//        BuyerDTO buyerDTO1 = getAllOrders().stream()
-//                .filter(b -> b.getBuyerId().equals(id))
-//                .findFirst()
-//                .orElseThrow(() -> new BuyerNotFoundException("Couldn't update. Buyer with id: " + id + " not found"));
-//        Optional<Buyer> buyerById = findBuyerById(id);
 
-        Optional<Buyer> buyerOptional = findBuyerById(id);
+        var buyerOptional = findBuyerById(id);
         buyerOptional.ifPresent(buyer -> {
             buyer.setBuyerId(buyerDTO.getBuyerId());
             buyer.setFirstName(buyerDTO.getFirstName());
@@ -60,7 +58,8 @@ public class BuyerService {
     }
 
     public void deleteBuyer(Long id) {
-       Optional<Buyer> buyerById = findBuyerById(id);
+       var buyerById = findBuyerById(id);
         buyerById.ifPresent(buyerRepository::delete);
     }
+
 }

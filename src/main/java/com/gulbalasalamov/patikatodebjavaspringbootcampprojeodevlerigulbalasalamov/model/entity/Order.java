@@ -24,7 +24,7 @@ public class Order {
 
     @CreationTimestamp
     @JsonFormat(pattern = "dd-MM-yyyy")
-    @Column(name = "order_date", nullable = false)
+    @Column(name = "order_date")
     private Date dateOrdered;
 
     @Column(name = "is_confirmed")
@@ -34,5 +34,21 @@ public class Order {
     @JoinColumn(name = "order_id")
     private List<Item> items;
 
+    private double totalPrice;
 
+//    public Order(Date dateOrdered, boolean isConfirmed, List<Item> items, double totalPrice) {
+//        this.dateOrdered = dateOrdered;
+//        this.isConfirmed = isConfirmed;
+//        this.items = items;
+//        this.totalPrice = totalPrice;
+//    }
+    //TODO: move to service
+//    public void addItemToOrder(Item item){
+//        items.add(item);
+//    }
+//
+//    public void removeItemFromOrder(Item item) {
+//        items.remove(item);
+//    }
+//}
 }

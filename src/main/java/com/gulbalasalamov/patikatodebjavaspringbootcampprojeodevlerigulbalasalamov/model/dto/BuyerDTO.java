@@ -12,19 +12,14 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BuyerDTO {
     private Long buyerId;
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private String phoneNumber;
-    private boolean isActive;
-
-    public BuyerDTO(Long buyerId, String firstName, String lastName, String email, String phoneNumber) {
-        this.buyerId = buyerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
+    private String address;
 }
