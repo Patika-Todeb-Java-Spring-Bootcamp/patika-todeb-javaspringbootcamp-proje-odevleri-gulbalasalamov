@@ -21,6 +21,9 @@ public class Buyer {
     private String firstName;
     private String lastName;
     private String email;
+
+    @Column(name = "password",length = 15)
+    private String password;
     private String phoneNumber;
     private String address;
     private double balance;
@@ -29,4 +32,30 @@ public class Buyer {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id")
     private List<Order> orders;
+
+//    public Buyer(String firstName,
+//                 String lastName,
+//                 String email,
+//                 String phoneNumber,
+//                 String address,
+//                 double balance,
+//                 boolean isActive,
+//                 List<Order> orders) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
+//        this.address = address;
+//        this.balance = balance;
+//        this.isActive = isActive;
+//        this.orders = orders;
+//    }
+    //TODO: move to service
+    public void addOrder(Order order){
+        orders.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
+    }
 }

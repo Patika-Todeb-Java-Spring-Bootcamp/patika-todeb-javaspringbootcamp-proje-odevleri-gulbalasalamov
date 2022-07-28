@@ -8,7 +8,10 @@ import java.util.List;
 
 @Data
 public class OrderDTO {
-    private Date date;
+
+    private Long orderId;
+    private boolean isConfirmed;
     private List<Item> items;
+    private double totalPrice;
 
 }

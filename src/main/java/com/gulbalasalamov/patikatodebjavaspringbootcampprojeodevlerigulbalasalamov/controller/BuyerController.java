@@ -24,20 +24,20 @@ public class BuyerController {
 
     @GetMapping("/all")
     public ResponseEntity<List<BuyerDTO>> getAllBuyers() {
-        return new ResponseEntity(buyerService.getAllOrders(), HttpStatus.OK);
+        return new ResponseEntity(buyerService.getAllBuyers(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<BuyerDTO> getBuyerById(@PathVariable long id) {
-        BuyerDTO buyerById = buyerService.getBuyerDTOById(id);
+        BuyerDTO buyerById = buyerService.getBuyerById(id);
         //return ResponseEntity.status(HttpStatus.OK).body(buyerById);
         return new ResponseEntity(buyerById,HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     //Raw use warning
-    public ResponseEntity createBuyer(@RequestBody BuyerDTO buyerDTO) {
-        buyerService.createBuyer(buyerDTO);
+    public ResponseEntity addBuyer(@RequestBody BuyerDTO buyerDTO) {
+        buyerService.addBuyer(buyerDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
@@ -48,7 +48,6 @@ public class BuyerController {
     }
 
 //    @PatchMapping("/{id}")
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteBuyer(@PathVariable Long id) {

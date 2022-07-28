@@ -18,9 +18,14 @@ public class Category {
     @Column(name = "category_id")
     private Long categoryId;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private List<Item> items;
 
     private CategoryType categoryType;
+
+//    public Category(List<Item> items, CategoryType categoryType) {
+//        this.items = items;
+//        this.categoryType = categoryType;
+//    }
 }
