@@ -34,9 +34,9 @@ public class BuyerController {
         return new ResponseEntity(buyerById,HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     //Raw use warning
-    public ResponseEntity createBuyer(@RequestBody BuyerDTO buyerDTO) {
+    public ResponseEntity addBuyer(@RequestBody BuyerDTO buyerDTO) {
         buyerService.addBuyer(buyerDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -48,7 +48,6 @@ public class BuyerController {
     }
 
 //    @PatchMapping("/{id}")
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteBuyer(@PathVariable Long id) {

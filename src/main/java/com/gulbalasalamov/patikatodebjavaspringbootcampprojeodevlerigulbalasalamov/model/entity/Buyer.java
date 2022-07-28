@@ -21,6 +21,8 @@ public class Buyer {
     private String firstName;
     private String lastName;
     private String email;
+
+    @Column(name = "password",length = 15)
     private String password;
     private String phoneNumber;
     private String address;

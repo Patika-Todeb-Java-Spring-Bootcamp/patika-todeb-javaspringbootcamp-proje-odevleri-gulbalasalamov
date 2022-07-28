@@ -37,9 +37,18 @@ public class CategoryService {
         categoryRepository.save(Mapper.toEntity(categoryDTO));
     }
 
-    public void deleteCategory(CategoryDTO categoryDTO) {
-        var categoryById = findCategoryById(categoryDTO.getCategoryId());
+    public void deleteCategory(Long id) {
+        var categoryById = findCategoryById(id);
         categoryById.ifPresent(categoryRepository::delete);
+    }
+
+    public void updateCategory(Long categoryId, CategoryDTO categoryDTO) {
+        var categoryById = findCategoryById(categoryId);
+        categoryById.ifPresent(category -> {
+            category.setCategoryId(categoryDTO.getCategoryId());
+            category.setCategoryType(categoryDTO.getCategoryType());
+            categoryRepository.save(category);
+        });
     }
 
     public List<CategoryDTO> getAllCategories() {
@@ -48,16 +57,16 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    public void addItemToCategoryList(Long itemId, Long categoryId) {
-        var itemById = itemService.findItemById(itemId);
-        var categoryById = findCategoryById(categoryId);
-
-        categoryById.ifPresent(category -> {
-            var items = category.getItems();
-            var item = itemById.get();
-            items.add(item);
-            category.setItems(items);
-            categoryRepository.save(category);
-        });
-    }
+//    public void addItemToCategoryList(Long itemId, Long categoryId) {
+//        var itemById = itemService.findItemById(itemId);
+//        var categoryById = findCategoryById(categoryId);
+//
+//        categoryById.ifPresent(category -> {
+//            var items = category.getItems();
+//            var item = itemById.get();
+//            items.add(item);
+//            category.setItems(items);
+//            categoryRepository.save(category);
+//        });
+//    }
 }

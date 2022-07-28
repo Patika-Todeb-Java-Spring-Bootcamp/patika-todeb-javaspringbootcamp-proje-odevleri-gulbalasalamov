@@ -16,7 +16,9 @@ public class Mapper {
         buyerDTO.setFirstName(buyer.getFirstName());
         buyerDTO.setLastName(buyer.getLastName());
         buyerDTO.setEmail(buyer.getEmail());
-//        buyerDTO.setActive(buyer.isActive());
+        buyerDTO.setPassword(buyer.getPassword());
+        buyerDTO.setPhoneNumber(buyer.getPhoneNumber());
+        buyerDTO.setAddress(buyer.getAddress());
         return buyerDTO;
         //return new BuyerDTO(buyer.getBuyerId(), buyer.getFirstName(), buyer.getLastName(), buyer.getEmail(), buyer.getPhoneNumber());
     }
@@ -27,7 +29,9 @@ public class Mapper {
         buyer.setFirstName(buyerDTO.getFirstName());
         buyer.setLastName(buyerDTO.getLastName());
         buyer.setEmail(buyerDTO.getEmail());
-//        buyer.setActive(buyerDTO.isActive());
+        buyer.setPassword(buyerDTO.getPassword());
+        buyer.setPhoneNumber(buyerDTO.getPhoneNumber());
+        buyer.setAddress(buyerDTO.getAddress());
         return buyer;
 
         //return new Buyer(buyerDTO.getBuyerId(), buyerDTO.getFirstName(), buyerDTO.getLastName(), buyerDTO.getEmail(), buyerDTO.getPhoneNumber(),null,0,false,null);

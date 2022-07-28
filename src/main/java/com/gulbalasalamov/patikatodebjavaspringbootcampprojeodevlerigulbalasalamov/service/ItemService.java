@@ -1,16 +1,13 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.service;
 
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.BuyerNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.ItemNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.ItemDTO;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,13 +30,13 @@ public class ItemService {
         return Mapper.toDto(itemById.get());
     }
 
-    public void createItem(ItemDTO itemDTO) {
+    public void addItem(ItemDTO itemDTO) {
         itemRepository.save(Mapper.toEntity(itemDTO));
     }
 
 
-    public void deleteItem(ItemDTO itemDTO) {
-        var itemById = findItemById(itemDTO.getItemId());
+    public void deleteItem(Long id) {
+        var itemById = findItemById(id);
         itemById.ifPresent(itemRepository::delete);
     }
 
