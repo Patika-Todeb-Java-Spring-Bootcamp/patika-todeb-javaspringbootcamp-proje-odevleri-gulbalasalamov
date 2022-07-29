@@ -26,7 +26,7 @@ public class Buyer {
     private String password;
     private String phoneNumber;
     private String address;
-    private double balance;
+    //private double balance;
     private boolean isActive;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
