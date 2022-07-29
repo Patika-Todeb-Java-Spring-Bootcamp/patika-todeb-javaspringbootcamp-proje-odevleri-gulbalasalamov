@@ -1,11 +1,14 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -24,9 +27,15 @@ public class Category {
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
-    private List<Item> items;
+    @JsonIgnore
+    //private List<Item> items;
+    private Set<Item> items = new HashSet<>();
 
     private CategoryType categoryType;
+
+    public void addCategoryToItem(Item item){
+        items.add(item);
+    }
 
 //    public Category(List<Item> items, CategoryType categoryType) {
 //        this.items = items;

@@ -28,12 +28,13 @@ public class Item {
     private Integer stock;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = )
-    private List<Category> categories;
+    @ManyToMany(mappedBy = "items")
+    //private List<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
 
@@ -42,7 +43,9 @@ public class Item {
     private Seller seller;
 
 
-
+    public void addItemToCategory(Category category){
+        categories.add(category);
+    }
 
 //    public Item(String name, String description, double price, Integer stock) {
 //        this.name = name;

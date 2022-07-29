@@ -7,7 +7,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,22 +35,20 @@ public class Order {
 
     @JsonIgnore
     @OneToMany(mappedBy = "order")
-    @JoinColumn(name = "order_id")
-    private List<Item> items;
+    //private List<Item> items;
+    private Set<Item> items = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buyer_id",referencedColumnName = "id")
+    @JoinColumn(name = "buyer_id", referencedColumnName = "id")
     private Buyer buyer;
 
     private double totalPrice;
 
-    //TODO: move to service
-//    public void addItemToOrder(Item item){
-//        items.add(item);
-//    }
-//
-//    public void removeItemFromOrder(Item item) {
-//        items.remove(item);
-//    }
-//}
+    public void addItemToOrder(Item item) {
+        items.add(item);
+    }
+
+    public void removeItemFromOrder(Item item) {
+        items.remove(item);
+    }
 }

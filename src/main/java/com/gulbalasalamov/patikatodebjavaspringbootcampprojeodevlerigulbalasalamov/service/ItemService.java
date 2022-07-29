@@ -2,21 +2,26 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.ItemNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.ItemDTO;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Category;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.CategoryRepository;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
     private final ItemRepository itemRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.itemRepository = itemRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     protected Optional<Item> findItemById(Long id) {
@@ -53,6 +58,20 @@ public class ItemService {
             item.setName(itemDTO.getName());
             item.setDescription(itemDTO.getDescription());
             item.setPrice(itemDTO.getPrice());
+            itemRepository.save(item);
+        });
+    }
+
+    public void addItemToCategory(Long itemId, Long categoryId) {
+        Optional<Item> itemById = findItemById(itemId);
+        Optional<Category> categoryById = categoryRepository.findById(categoryId);
+
+        itemById.ifPresent(item -> {
+            Category category = categoryById.get();
+            Set<Category> categories = item.getCategories();
+            categories.add(category);
+            item.setCategories(categories);
+            //item.addItemToCategory(categoryById.get());
             itemRepository.save(item);
         });
     }

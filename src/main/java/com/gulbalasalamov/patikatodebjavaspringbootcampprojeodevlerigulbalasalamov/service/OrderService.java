@@ -2,26 +2,33 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.OrderNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.OrderDTO;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final BuyerService buyerService;
-    private final ItemService itemService;
+    private final BuyerRepository buyerRepository;
 
-    public OrderService(OrderRepository repository, BuyerService buyerService, ItemService itemService) {
-        this.orderRepository = repository;
-        this.buyerService = buyerService;
-        this.itemService = itemService;
+    public OrderService(OrderRepository orderRepository, BuyerRepository buyerRepository, ItemRepository itemRepository) {
+        this.orderRepository = orderRepository;
+        this.buyerRepository = buyerRepository;
+        this.itemRepository = itemRepository;
     }
+
+    private final ItemRepository itemRepository;
+
+
 
     protected Optional<Order> findOrderById(Long id) {
         var order = orderRepository.findById(id).orElseThrow(() ->
@@ -59,18 +66,33 @@ public class OrderService {
         });
     }
 
-//    public void addItemToOrderList(Long orderId, Long itemId) {
-//        var itemById = itemService.findItemById(itemId);
-//        var orderById = findOrderById(orderId);
-//
-//        orderById.ifPresent(order -> {
+    public void addItemToOrderList(Long orderId, Long itemId) {
+        var itemById = itemRepository.findById(itemId);
+        var orderById = findOrderById(orderId);
+
+        orderById.ifPresent(order -> {
+            Item item = itemById.get();
+            Set<Item> items = order.getItems();
+            items.add(item);
+            order.setItems(items);
+//            order.getItems().add(itemById.get());
 //            var items = order.getItems();
 //            var item = itemById.get();
 //            items.add(item);
 //            order.setItems(items);
-//            orderRepository.save(order);
-//        });
-//    }
+            orderRepository.save(order);
+        });
+    }
+
+    public void removeItemToOrderList(Long orderId, Long itemId) {
+        var itemById = itemRepository.findById(itemId);
+        var orderById = findOrderById(orderId);
+
+        orderById.ifPresent(order -> {
+            order.removeItemFromOrder(itemById.get());
+            orderRepository.save(order);
+        });
+    }
 
 
 }

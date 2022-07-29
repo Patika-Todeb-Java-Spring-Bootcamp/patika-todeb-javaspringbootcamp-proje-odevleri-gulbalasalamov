@@ -19,6 +19,7 @@ public class Mapper {
         buyerDTO.setPassword(buyer.getPassword());
         buyerDTO.setPhoneNumber(buyer.getPhoneNumber());
         buyerDTO.setAddress(buyer.getAddress());
+        buyerDTO.setOrders(buyer.getOrders());
         return buyerDTO;
         //return new BuyerDTO(buyer.getBuyerId(), buyer.getFirstName(), buyer.getLastName(), buyer.getEmail(), buyer.getPhoneNumber());
     }
@@ -32,6 +33,7 @@ public class Mapper {
         buyer.setPassword(buyerDTO.getPassword());
         buyer.setPhoneNumber(buyerDTO.getPhoneNumber());
         buyer.setAddress(buyerDTO.getAddress());
+        buyer.setOrders(buyerDTO.getOrders());
         return buyer;
 
         //return new Buyer(buyerDTO.getBuyerId(), buyerDTO.getFirstName(), buyerDTO.getLastName(), buyerDTO.getEmail(), buyerDTO.getPhoneNumber(),null,0,false,null);
@@ -43,6 +45,7 @@ public class Mapper {
         itemDTO.setName(item.getName());
         itemDTO.setDescription(item.getDescription());
         itemDTO.setPrice(item.getPrice());
+        itemDTO.setCategories(item.getCategories());
         return itemDTO;
     }
 
@@ -52,6 +55,7 @@ public class Mapper {
         item.setName(itemDTO.getName());
         item.setDescription(itemDTO.getDescription());
         item.setPrice(itemDTO.getPrice());
+        item.setCategories(itemDTO.getCategories());
         return item;
     }
 
@@ -77,7 +81,7 @@ public class Mapper {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryId(category.getId());
         categoryDTO.setCategoryType(category.getCategoryType());
-        //categoryDTO.setItems(category.getItems());
+        categoryDTO.setItems(category.getItems());
         return categoryDTO;
     }
 
@@ -85,7 +89,7 @@ public class Mapper {
         Category category = new Category();
         category.setId(categoryDTO.getCategoryId());
         category.setCategoryType(categoryDTO.getCategoryType());
-        //category.setItems(categoryDTO.getItems());
+        category.setItems(categoryDTO.getItems());
         return category;
     }
 }

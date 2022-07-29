@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +33,7 @@ public class Buyer {
 
     @JsonIgnore
     @OneToMany(mappedBy = "buyer")
-    private List<Order> orders;
+    //private List<Order> orders;
+    private Set<Order> orders = new HashSet<>();
 
 }
