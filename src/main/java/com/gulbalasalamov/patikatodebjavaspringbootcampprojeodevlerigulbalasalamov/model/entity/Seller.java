@@ -1,20 +1,19 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "buyer")
-public class Buyer {
+@Table(name = "seller")
+public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,7 +29,7 @@ public class Buyer {
     private boolean isActive;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "buyer")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "seller")
+    private List<Item> items;
 
 }

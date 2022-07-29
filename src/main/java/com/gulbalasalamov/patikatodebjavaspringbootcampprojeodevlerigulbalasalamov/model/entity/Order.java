@@ -1,6 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,8 +20,8 @@ import lombok.NoArgsConstructor;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", nullable = false)
-    private Long orderId;
+    //@Column(name = "order_id", nullable = false)
+    private Long id;
 
     @CreationTimestamp
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -30,22 +31,17 @@ public class Order {
     @Column(name = "is_confirmed")
     private boolean isConfirmed;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "order")
     @JoinColumn(name = "order_id")
     private List<Item> items;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buyer_id",referencedColumnName = "id")
+    private Buyer buyer;
+
     private double totalPrice;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    //@JoinColumn(name = "order_id")
-//    private Buyer buyer;
-
-//    public Order(Date dateOrdered, boolean isConfirmed, List<Item> items, double totalPrice) {
-//        this.dateOrdered = dateOrdered;
-//        this.isConfirmed = isConfirmed;
-//        this.items = items;
-//        this.totalPrice = totalPrice;
-//    }
     //TODO: move to service
 //    public void addItemToOrder(Item item){
 //        items.add(item);

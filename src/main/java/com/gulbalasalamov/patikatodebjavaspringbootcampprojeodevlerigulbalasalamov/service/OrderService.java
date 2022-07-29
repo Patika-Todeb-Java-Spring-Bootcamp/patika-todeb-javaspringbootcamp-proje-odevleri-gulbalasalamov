@@ -1,9 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.service;
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.OrderNotFoundException;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.ItemDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.OrderDTO;
-import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.OrderRepository;
@@ -54,7 +52,7 @@ public class OrderService {
     public void updateOrder(Long id, OrderDTO orderDTO) {
         Optional<Order> orderById = findOrderById(id);
         orderById.ifPresent(order -> {
-            order.setOrderId(orderDTO.getOrderId());
+            order.setId(orderDTO.getOrderId());
             order.setTotalPrice(orderDTO.getTotalPrice());
             order.setItems(orderDTO.getItems());
             orderRepository.save(order);

@@ -49,7 +49,7 @@ public class ItemService {
     public void updateItem(Long id, ItemDTO itemDTO) {
         var itemById = findItemById(id);
         itemById.ifPresent(item -> {
-            item.setItemId(itemDTO.getItemId());
+            item.setId(itemDTO.getItemId());
             item.setName(itemDTO.getName());
             item.setDescription(itemDTO.getDescription());
             item.setPrice(itemDTO.getPrice());

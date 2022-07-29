@@ -45,7 +45,7 @@ public class CategoryService {
     public void updateCategory(Long categoryId, CategoryDTO categoryDTO) {
         var categoryById = findCategoryById(categoryId);
         categoryById.ifPresent(category -> {
-            category.setCategoryId(categoryDTO.getCategoryId());
+            category.setId(categoryDTO.getCategoryId());
             category.setCategoryType(categoryDTO.getCategoryType());
             categoryRepository.save(category);
         });

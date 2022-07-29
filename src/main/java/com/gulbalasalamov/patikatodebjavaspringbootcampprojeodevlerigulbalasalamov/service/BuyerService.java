@@ -48,7 +48,7 @@ public class BuyerService {
 
         var buyerOptional = findBuyerById(id);
         buyerOptional.ifPresent(buyer -> {
-            buyer.setBuyerId(buyerDTO.getBuyerId());
+            buyer.setId(buyerDTO.getBuyerId());
             buyer.setFirstName(buyerDTO.getFirstName());
             buyer.setLastName(buyerDTO.getLastName());
             buyer.setEmail(buyerDTO.getEmail());
