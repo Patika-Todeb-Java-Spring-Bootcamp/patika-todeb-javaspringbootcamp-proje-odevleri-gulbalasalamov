@@ -36,6 +36,10 @@ public class Order {
 
     private double totalPrice;
 
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    //@JoinColumn(name = "order_id")
+//    private Buyer buyer;
+
 //    public Order(Date dateOrdered, boolean isConfirmed, List<Item> items, double totalPrice) {
 //        this.dateOrdered = dateOrdered;
 //        this.isConfirmed = isConfirmed;
