@@ -6,6 +6,7 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.CategoryRepository;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
-    private final ItemService itemService;
+    private final ItemRepository itemRepository;
 
-    public CategoryService(CategoryRepository categoryRepository, ItemService itemService) {
+    public CategoryService(CategoryRepository categoryRepository, ItemRepository itemRepository) {
         this.categoryRepository = categoryRepository;
-        this.itemService = itemService;
+        this.itemRepository = itemRepository;
     }
 
     protected Optional<Category> findCategoryById(Long id) {
@@ -45,7 +46,7 @@ public class CategoryService {
     public void updateCategory(Long categoryId, CategoryDTO categoryDTO) {
         var categoryById = findCategoryById(categoryId);
         categoryById.ifPresent(category -> {
-            category.setCategoryId(categoryDTO.getCategoryId());
+            category.setId(categoryDTO.getCategoryId());
             category.setCategoryType(categoryDTO.getCategoryType());
             categoryRepository.save(category);
         });
@@ -57,16 +58,16 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-//    public void addItemToCategoryList(Long itemId, Long categoryId) {
-//        var itemById = itemService.findItemById(itemId);
-//        var categoryById = findCategoryById(categoryId);
-//
-//        categoryById.ifPresent(category -> {
-//            var items = category.getItems();
-//            var item = itemById.get();
-//            items.add(item);
-//            category.setItems(items);
-//            categoryRepository.save(category);
-//        });
-//    }
+    public void addCategoryToItem(Long categoryId,Long itemId) {
+        var categoryById = findCategoryById(categoryId);
+        var itemById = itemRepository.findById(itemId);
+
+        categoryById.ifPresent(category -> {
+            var items = category.getItems();
+            var item = itemById.get();
+            items.add(item);
+            category.setItems(items);
+            categoryRepository.save(category);
+        });
+    }
 }

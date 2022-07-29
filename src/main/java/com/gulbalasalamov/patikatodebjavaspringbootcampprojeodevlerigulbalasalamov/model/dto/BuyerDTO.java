@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +23,5 @@ public class BuyerDTO {
     private String password;
     private String phoneNumber;
     private String address;
+    private Set<Order> orders;
 }

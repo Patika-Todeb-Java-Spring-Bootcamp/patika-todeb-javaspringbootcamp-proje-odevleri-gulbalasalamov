@@ -6,10 +6,12 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class CategoryDTO {
     private Long categoryId;
     private CategoryType categoryType;
+    private Set<Item> items;
     //private List<Item> items;
 }

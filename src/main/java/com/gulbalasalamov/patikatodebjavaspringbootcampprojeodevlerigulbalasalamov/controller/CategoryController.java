@@ -45,4 +45,10 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body("Related category was deleted");
     }
 
+    @PutMapping("/{categoryId}/item/{itemId}")
+    public ResponseEntity addItemToCategory(@PathVariable Long itemId, @PathVariable Long categoryId) {
+        categoryService.addCategoryToItem(categoryId,itemId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }

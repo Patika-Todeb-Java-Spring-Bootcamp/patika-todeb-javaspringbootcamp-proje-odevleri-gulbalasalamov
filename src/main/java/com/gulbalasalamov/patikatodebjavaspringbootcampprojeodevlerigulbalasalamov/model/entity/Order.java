@@ -1,12 +1,15 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +22,8 @@ import lombok.NoArgsConstructor;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", nullable = false)
-    private Long orderId;
+    //@Column(name = "order_id", nullable = false)
+    private Long id;
 
     @CreationTimestamp
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -30,29 +33,22 @@ public class Order {
     @Column(name = "is_confirmed")
     private boolean isConfirmed;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private List<Item> items;
+    @JsonIgnore
+    @OneToMany(mappedBy = "order")
+    //private List<Item> items;
+    private Set<Item> items = new HashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buyer_id", referencedColumnName = "id")
+    private Buyer buyer;
 
     private double totalPrice;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    //@JoinColumn(name = "order_id")
-//    private Buyer buyer;
+    public void addItemToOrder(Item item) {
+        items.add(item);
+    }
 
-//    public Order(Date dateOrdered, boolean isConfirmed, List<Item> items, double totalPrice) {
-//        this.dateOrdered = dateOrdered;
-//        this.isConfirmed = isConfirmed;
-//        this.items = items;
-//        this.totalPrice = totalPrice;
-//    }
-    //TODO: move to service
-//    public void addItemToOrder(Item item){
-//        items.add(item);
-//    }
-//
-//    public void removeItemFromOrder(Item item) {
-//        items.remove(item);
-//    }
-//}
+    public void removeItemFromOrder(Item item) {
+        items.remove(item);
+    }
 }

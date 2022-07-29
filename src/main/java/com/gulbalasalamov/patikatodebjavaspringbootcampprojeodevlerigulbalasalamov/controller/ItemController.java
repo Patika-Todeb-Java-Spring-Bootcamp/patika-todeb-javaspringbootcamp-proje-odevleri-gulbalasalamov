@@ -47,4 +47,10 @@ public class ItemController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PutMapping("/{itemId}/category/{categoryId}")
+    public ResponseEntity addItemToCategory(@PathVariable Long itemId, @PathVariable Long categoryId) {
+        itemService.addItemToCategory(itemId,categoryId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }

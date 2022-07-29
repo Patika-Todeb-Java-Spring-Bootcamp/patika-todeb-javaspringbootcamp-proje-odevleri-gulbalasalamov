@@ -3,15 +3,16 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class OrderDTO {
 
     private Long orderId;
     private boolean isConfirmed;
-    private List<Item> items;
+    //private List<Item> items;
+    private Set<Item> items;
     private double totalPrice;
 
 }
