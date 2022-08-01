@@ -2,8 +2,9 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Role;
-import com.bootcamp.StudentManagementSystem.exception.CustomJwtException;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.CustomJwtException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
