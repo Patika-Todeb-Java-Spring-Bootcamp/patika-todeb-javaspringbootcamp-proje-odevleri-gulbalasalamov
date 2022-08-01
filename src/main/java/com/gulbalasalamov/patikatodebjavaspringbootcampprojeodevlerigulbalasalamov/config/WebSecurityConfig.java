@@ -19,6 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/v1/buyer/**").permitAll()
                 .antMatchers("/v1/item/**").permitAll()
+                .antMatchers("/v1/category/**").permitAll()
+                .antMatchers("/v1/order/**").permitAll()
                 .anyRequest()
                 .authenticated(); // authenticate means no role is important. login enough
 
