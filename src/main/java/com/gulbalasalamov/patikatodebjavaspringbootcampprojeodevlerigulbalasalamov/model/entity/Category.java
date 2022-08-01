@@ -21,15 +21,14 @@ public class Category {
     //@Column(name = "category_id")
     private Long id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "item_categories",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id")
-    )
+//    @ManyToMany
+//    @JoinTable(
+//            name = "item_categories",
+//            joinColumns = @JoinColumn(name = "category_id"),
+//            inverseJoinColumns = @JoinColumn(name = "item_id"))
     @JsonIgnore
-    //private List<Item> items;
-    private Set<Item> items = new HashSet<>();
+    @ManyToMany(mappedBy = "categories")
+    private Set<Item> items ;
 
     private CategoryType categoryType;
 

@@ -4,9 +4,11 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.ItemDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Category;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.CategoryRepository;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,19 +70,40 @@ public class ItemService {
 
         itemById.ifPresent(item -> {
             Category category = categoryById.get();
-            Set<Category> categories = item.getCategories();
-            categories.add(category);
-            item.setCategories(categories);
+            item.getCategories().add(category);
+            item.setCategories(item.getCategories());
             //item.addItemToCategory(categoryById.get());
             itemRepository.save(item);
         });
     }
 
+//    public void addItemToOrder(Long itemId,Long orderId) {
+//        var orderByID = orderRepository.findById(itemId);
+//        var itemById = findItemById(orderId);
+//
+//        itemById.ifPresent(item -> {
+//            Order order = orderByID.get();
+//            item..add(order);
+//            items.add(item);
+//            order.setItems(items);
+//           // item.setOrder(order);
+////            order.getItems().add(itemById.get());
+////            var items = order.getItems();
+////            var item = itemById.get();
+////            items.add(item);
+////            order.setItems(items);
+//            orderRepository.save(order);
+//        });
+//    }
 
-//    private Optional<Buyer> findBuyerById(Long id) {
-//        Buyer buyer = buyerRepository.findById(id).orElseThrow(() ->
-//                new BuyerNotFoundException("Related buyer with id : " + id + " not found"));
-//        return Optional.of(buyer);
+//    public void removeItemToOrder(Long orderId, Long itemId) {
+//        var itemById = itemRepository.findById(itemId);
+//        var orderById = findOrderById(orderId);
+//
+//        orderById.ifPresent(order -> {
+//            order.removeItemFromOrder(itemById.get());
+//            orderRepository.save(order);
+//        });
 //    }
 
 
