@@ -72,14 +72,8 @@ public class OrderService {
 
         orderById.ifPresent(order -> {
             Item item = itemById.get();
-            Set<Item> items = order.getItems();
-            items.add(item);
-            order.setItems(items);
-//            order.getItems().add(itemById.get());
-//            var items = order.getItems();
-//            var item = itemById.get();
-//            items.add(item);
-//            order.setItems(items);
+            order.getItems().add(item);
+            order.setItems(order.getItems());
             orderRepository.save(order);
         });
     }
@@ -89,7 +83,9 @@ public class OrderService {
         var orderById = findOrderById(orderId);
 
         orderById.ifPresent(order -> {
-            order.removeItemFromOrder(itemById.get());
+            Item item = itemById.get();
+            order.getItems().remove(item);
+            order.setItems(order.getItems());
             orderRepository.save(order);
         });
     }

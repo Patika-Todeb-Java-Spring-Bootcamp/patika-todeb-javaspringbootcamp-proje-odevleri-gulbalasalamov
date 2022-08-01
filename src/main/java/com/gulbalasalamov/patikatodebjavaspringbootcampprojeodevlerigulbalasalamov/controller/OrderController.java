@@ -45,13 +45,13 @@ public class OrderController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("/{orderId}/itemsAdd/{itemId}")
+    @PutMapping("/{orderId}/item-add/{itemId}")
     public ResponseEntity addItemToOrder(@PathVariable Long orderId, @PathVariable Long itemId) {
         orderService.addItemToOrderList(orderId, itemId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("/{orderId}/itemsRemove/{itemId}")
+    @PutMapping("/{orderId}/item-remove/{itemId}")
     public ResponseEntity removeItemFromOrder(@PathVariable Long orderId, @PathVariable Long itemId) {
         orderService.removeItemToOrderList(orderId, itemId);
         return new ResponseEntity(HttpStatus.OK);

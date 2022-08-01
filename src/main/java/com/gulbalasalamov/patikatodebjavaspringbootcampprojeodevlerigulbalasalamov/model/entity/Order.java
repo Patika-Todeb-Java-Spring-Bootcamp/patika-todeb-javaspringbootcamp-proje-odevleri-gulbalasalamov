@@ -33,10 +33,15 @@ public class Order {
     @Column(name = "is_confirmed")
     private boolean isConfirmed;
 
+    //    @JsonIgnore
+//    @OneToMany(mappedBy = "order")
+
     @JsonIgnore
     @OneToMany(mappedBy = "order")
-    //private List<Item> items;
-    private Set<Item> items = new HashSet<>();
+    private Set<Item> items;
+
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//    private Set<Item> orderItems;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "buyer_id", referencedColumnName = "id")
