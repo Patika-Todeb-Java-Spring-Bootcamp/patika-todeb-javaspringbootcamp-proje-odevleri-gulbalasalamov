@@ -33,6 +33,11 @@ public class User {
         this.email = email;
         this.password = password;
     }
+//
+//    @ManyToMany
+//    @JoinTable(name = "user_roles", joinColumns = {
+//            @JoinColumn(name = "user_id")}, inverseJoinColumns = {
+//            @JoinColumn(name = "role_id")})    @ManyToMany(cascade = CascadeType.REMOVE)
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
