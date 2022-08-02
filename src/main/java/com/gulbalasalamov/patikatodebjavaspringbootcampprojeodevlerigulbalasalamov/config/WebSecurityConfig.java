@@ -1,13 +1,27 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.config;
 
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.security.JwtTokenFilterConfigurer;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.security.JwtTokenProvider;
+import io.jsonwebtoken.Jwt;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //WebSecurityConfigurer creates beans, makes configs, gets https... creates auth layer
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -17,10 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Entry points
         http.authorizeRequests()
-                .antMatchers("/v1/buyer/**").permitAll()
-                .antMatchers("/v1/item/**").permitAll()
-                .antMatchers("/v1/category/**").permitAll()
-                .antMatchers("/v1/order/**").permitAll()
+                .antMatchers("users/signin").permitAll()
+                .antMatchers("users/signup").permitAll()
                 .anyRequest()
                 .authenticated(); // authenticate means no role is important. login enough
 
@@ -35,8 +47,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf().disable();
 
         //Apply jwt
-        //http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
+        http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
 
 
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
