@@ -49,11 +49,11 @@ public class Order {
 
     private double totalPrice;
 
-    public void addItemToOrder(Item item) {
-        items.add(item);
-    }
-
-    public void removeItemFromOrder(Item item) {
-        items.remove(item);
-    }
+//    public void addItemToOrder(Item item) {
+//        items.add(item);
+//    }
+//
+//    public void removeItemFromOrder(Item item) {
+//        items.remove(item);
+//    }
 }

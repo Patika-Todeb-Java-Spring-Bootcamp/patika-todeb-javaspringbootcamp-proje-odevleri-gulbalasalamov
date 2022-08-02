@@ -1,8 +1,8 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.config;
 
+
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.security.JwtTokenFilterConfigurer;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.security.JwtTokenProvider;
-import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,8 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Entry points
         http.authorizeRequests()
-                .antMatchers("users/signin").permitAll()
-                .antMatchers("users/signup").permitAll()
+                .antMatchers("/users/signin").permitAll()
+                .antMatchers("/users/signup").permitAll()
                 .anyRequest()
                 .authenticated(); // authenticate means no role is important. login enough
 

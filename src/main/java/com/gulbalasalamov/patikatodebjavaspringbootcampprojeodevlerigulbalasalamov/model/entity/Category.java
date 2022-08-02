@@ -26,7 +26,7 @@ public class Category {
 //            name = "item_categories",
 //            joinColumns = @JoinColumn(name = "category_id"),
 //            inverseJoinColumns = @JoinColumn(name = "item_id"))
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private Set<Item> items ;
 
