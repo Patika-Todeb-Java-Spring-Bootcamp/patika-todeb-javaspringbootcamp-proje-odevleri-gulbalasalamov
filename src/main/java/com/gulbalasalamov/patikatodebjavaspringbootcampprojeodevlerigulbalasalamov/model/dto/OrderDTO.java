@@ -11,8 +11,8 @@ public class OrderDTO {
 
     private Long orderId;
     private boolean isConfirmed;
-    //private List<Item> items;
-    private Set<Item> items;
+    private List<Item> items;
+    //private Set<Item> items;
     private double totalPrice;
 
 }

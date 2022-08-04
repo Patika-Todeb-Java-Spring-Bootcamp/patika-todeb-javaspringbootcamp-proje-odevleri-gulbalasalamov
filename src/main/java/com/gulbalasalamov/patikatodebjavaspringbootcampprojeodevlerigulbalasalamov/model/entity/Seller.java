@@ -29,7 +29,7 @@ public class Seller {
     private boolean isActive;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Item> items;
 
 }

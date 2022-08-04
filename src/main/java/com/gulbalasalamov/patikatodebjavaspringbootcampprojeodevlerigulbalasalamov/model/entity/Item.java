@@ -1,6 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,24 +29,13 @@ public class Item {
     //@JsonIgnore
     //@ManyToMany(mappedBy = "items")
     //private Set<Category> categories = new HashSet<>();
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "item_categories",
             joinColumns = @JoinColumn(name = "item_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
-
-    //    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
-    private Order order;
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seller_id", referencedColumnName = "id")
-    private Seller seller;
 
 
     public void addItemToCategory(Category category) {

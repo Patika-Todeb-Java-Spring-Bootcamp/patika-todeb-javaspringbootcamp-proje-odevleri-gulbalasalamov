@@ -1,6 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "buyer")
-public class Buyer {
+public class  Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,9 +32,9 @@ public class Buyer {
     //private double balance;
     private boolean isActive;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "buyer")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL)
     //private List<Order> orders;
-    private Set<Order> orders = new HashSet<>();
+    private List<Order> orders;
 
 }

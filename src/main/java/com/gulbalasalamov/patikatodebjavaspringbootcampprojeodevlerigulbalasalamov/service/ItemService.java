@@ -67,7 +67,7 @@ public class ItemService {
     public void addItemToCategory(Long itemId, Long categoryId) {
         Optional<Item> itemById = findItemById(itemId);
         Optional<Category> categoryById = categoryRepository.findById(categoryId);
-
+        //TODO: itemService uzerinden itemi category ile eslestirebiliyorum. ancak categoryService uzerinden itemi eslestiremiyorum
         itemById.ifPresent(item -> {
             Category category = categoryById.get();
             item.getCategories().add(category);

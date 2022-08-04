@@ -1,5 +1,6 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -37,23 +38,12 @@ public class Order {
 //    @OneToMany(mappedBy = "order")
 
     @JsonIgnore
-    @OneToMany(mappedBy = "order")
-    private Set<Item> items;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Item> items;
 
 //    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 //    private Set<Item> orderItems;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buyer_id", referencedColumnName = "id")
-    private Buyer buyer;
-
     private double totalPrice;
 
-//    public void addItemToOrder(Item item) {
-//        items.add(item);
-//    }
-//
-//    public void removeItemFromOrder(Item item) {
-//        items.remove(item);
-//    }
 }

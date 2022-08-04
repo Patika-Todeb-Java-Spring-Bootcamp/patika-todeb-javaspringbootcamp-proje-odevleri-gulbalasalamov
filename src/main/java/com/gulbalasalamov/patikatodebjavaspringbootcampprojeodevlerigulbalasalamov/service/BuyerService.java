@@ -3,6 +3,9 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.exception.BuyerNotFoundException;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.BuyerDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Buyer;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Category;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Order;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.BuyerRepository;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.OrderRepository;
@@ -60,6 +63,17 @@ public class BuyerService {
     public void deleteBuyer(Long id) {
        var buyerById = findBuyerById(id);
         buyerById.ifPresent(buyerRepository::delete);
+    }
+
+    public void addOrderToBuyer(Long buyerId, Long orderId) {
+        Optional<Order> orderById = orderRepository.findById(orderId);
+        Optional<Buyer> buyerById = findBuyerById(buyerId);
+        buyerById.ifPresent(buyer -> {
+            Order order = orderById.get();
+            buyer.getOrders().add(order);
+            buyer.setOrders(buyer.getOrders());
+            buyerRepository.save(buyer);
+        });
     }
 
 }

@@ -55,4 +55,10 @@ public class BuyerController {
         //return ResponseEntity.ok().build();
         return ResponseEntity.status(HttpStatus.OK).body("Related buyer was deleted successfully");
     }
+
+    @PutMapping("/{buyerId}/order/{orderId}")
+    public ResponseEntity addOrderToBuyer(@PathVariable Long buyerId, @PathVariable Long orderId) {
+        buyerService.addOrderToBuyer(buyerId,orderId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

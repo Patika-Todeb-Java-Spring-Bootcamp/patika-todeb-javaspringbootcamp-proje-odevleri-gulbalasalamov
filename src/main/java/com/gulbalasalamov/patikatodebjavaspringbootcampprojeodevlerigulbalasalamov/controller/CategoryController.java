@@ -46,7 +46,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}/item/{itemId}")
-    public ResponseEntity addItemToCategory(@PathVariable Long itemId, @PathVariable Long categoryId) {
+    public ResponseEntity addItemToCategory(@PathVariable Long categoryId, @PathVariable Long itemId) {
         categoryService.addCategoryToItem(categoryId,itemId);
         return new ResponseEntity(HttpStatus.OK);
     }

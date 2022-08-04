@@ -23,5 +23,5 @@ public class BuyerDTO {
     private String password;
     private String phoneNumber;
     private String address;
-    private Set<Order> orders;
+    private List<Order> orders;
 }

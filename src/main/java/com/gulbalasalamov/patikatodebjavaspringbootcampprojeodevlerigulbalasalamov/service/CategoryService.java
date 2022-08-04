@@ -4,6 +4,7 @@ import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalam
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.dto.CategoryDTO;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Category;
 
+import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity.Item;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.mapper.Mapper;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.CategoryRepository;
 import com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.repository.ItemRepository;
@@ -63,10 +64,9 @@ public class CategoryService {
         var itemById = itemRepository.findById(itemId);
 
         categoryById.ifPresent(category -> {
-            var items = category.getItems();
-            var item = itemById.get();
-            items.add(item);
-            category.setItems(items);
+            Item item = itemById.get();
+            category.getItems().add(item);
+            category.setItems(category.getItems());
             categoryRepository.save(category);
         });
     }
