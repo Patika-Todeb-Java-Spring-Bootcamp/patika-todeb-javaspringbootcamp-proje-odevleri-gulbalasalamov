@@ -1,6 +1,7 @@
 package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasalamov.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,9 @@ public class Item {
     //@JsonIgnore
     //@ManyToMany(mappedBy = "items")
     //private Set<Category> categories = new HashSet<>();
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    //TODO: order - items relationship works bi-directionally. It is also possible to assign a category to item, however, getAllItems() resurcive issue fails.
+    @ManyToMany
     @JoinTable(
             name = "item_categories",
             joinColumns = @JoinColumn(name = "item_id"),

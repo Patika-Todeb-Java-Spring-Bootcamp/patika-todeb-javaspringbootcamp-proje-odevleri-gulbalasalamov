@@ -2,6 +2,7 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,9 @@ public class Category {
 //            name = "item_categories",
 //            joinColumns = @JoinColumn(name = "category_id"),
 //            inverseJoinColumns = @JoinColumn(name = "item_id"))
-     @JsonIgnore
+
+    //@JsonIgnoreProperties({"items"})
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "categories")
     private Set<Item> items;
 
