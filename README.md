@@ -70,6 +70,8 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ## Implementation
 
+---
+
 To be updated.
 
 ---
