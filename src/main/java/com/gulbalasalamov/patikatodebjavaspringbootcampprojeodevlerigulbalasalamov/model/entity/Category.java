@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,26 +20,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     //@Column(name = "category_id")
     private Long id;
-
-    //    @ManyToMany
-//    @JoinTable(
-//            name = "item_categories",
-//            joinColumns = @JoinColumn(name = "category_id"),
-//            inverseJoinColumns = @JoinColumn(name = "item_id"))
-
-    //@JsonIgnoreProperties({"items"})
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "categories")
     private Set<Item> items;
 
     private CategoryType categoryType;
-
-    public void addCategoryToItem(Item item) {
-        items.add(item);
-    }
-
-//    public Category(List<Item> items, CategoryType categoryType) {
-//        this.items = items;
-//        this.categoryType = categoryType;
-//    }
 }

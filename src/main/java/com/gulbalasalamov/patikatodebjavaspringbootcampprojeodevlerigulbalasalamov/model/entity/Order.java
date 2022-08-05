@@ -34,9 +34,6 @@ public class Order {
     @Column(name = "is_confirmed")
     private boolean isConfirmed;
 
-    //    @JsonIgnore
-//    @OneToMany(mappedBy = "order")
-
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private List<Item> items;

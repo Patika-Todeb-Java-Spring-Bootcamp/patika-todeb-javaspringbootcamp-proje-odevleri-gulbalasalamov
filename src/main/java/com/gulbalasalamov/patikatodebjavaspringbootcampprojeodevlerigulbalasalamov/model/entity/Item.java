@@ -27,9 +27,6 @@ public class Item {
     private String description;
     private double price;
     private Integer stock;
-    //@JsonIgnore
-    //@ManyToMany(mappedBy = "items")
-    //private Set<Category> categories = new HashSet<>();
 
     //TODO: order - items relationship works bi-directionally. It is also possible to assign a category to item, however, getAllItems() resurcive issue fails.
     @ManyToMany
@@ -38,10 +35,4 @@ public class Item {
             joinColumns = @JoinColumn(name = "item_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
-
-
-    public void addItemToCategory(Category category) {
-        categories.add(category);
-    }
-
 }
