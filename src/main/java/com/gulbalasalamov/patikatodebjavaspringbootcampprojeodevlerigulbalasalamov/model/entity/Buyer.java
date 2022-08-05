@@ -32,9 +32,8 @@ public class  Buyer {
     //private double balance;
     private boolean isActive;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
-    //private List<Order> orders;
     private List<Order> orders;
 
 }
