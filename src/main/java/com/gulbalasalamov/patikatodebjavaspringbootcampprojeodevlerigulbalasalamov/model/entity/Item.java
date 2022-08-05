@@ -3,9 +3,7 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,10 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+
+@Getter
+@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "item") // this will give entity name to database
+@Table(name = "item")
 
 public class Item {
     @Id
@@ -28,11 +29,16 @@ public class Item {
     private double price;
     private Integer stock;
 
-    //TODO: order - items relationship works bi-directionally. It is also possible to assign a category to item, however, getAllItems() resurcive issue fails.
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(
             name = "item_categories",
             joinColumns = @JoinColumn(name = "item_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories;
+
+    //https://stackoverflow.com/questions/40266770/spring-jpa-bi-directional-cannot-evaluate-tostring
+    @Override
+    public String toString() {
+        return "";
+    }
 }
