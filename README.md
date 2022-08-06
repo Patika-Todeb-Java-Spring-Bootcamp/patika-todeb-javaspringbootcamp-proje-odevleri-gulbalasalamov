@@ -7,7 +7,7 @@ https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringboot
 
 ---
 
-#### Project Brief
+## Project Brief
 
 ---
 
@@ -30,7 +30,7 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ---
 
-#### Functional Requirements
+## Functional Requirements & Analysis
 
 ---
 
@@ -48,7 +48,11 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ---
 
-#### Use-Case Diagram
+## Design Use-Case Diagram
+
+---
+
+### Use-Case Diagram
 
 ---
 
@@ -56,10 +60,24 @@ This project omplementats Spring Boot framework with given dependencies:
 
 ---
 
-#### ERD Database Design
+### ERD Database Design
 
 ---
 
 ![](https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-proje-odevleri-gulbalasalamov/blob/master/docs/entity-relationship-diagram-updated.png)
 
 ---
+
+## Implementation
+
+---
+
+To be updated.
+
+---
+
+## Test
+
+---
+
+To be updated
