@@ -2,9 +2,6 @@
 
 This repository is dedicated to demonstrate weekly progress of project implementation in bootcamp.
 
-For weekly theorytical homework, please see: 
-https://github.com/Patika-Todeb-Java-Spring-Bootcamp/patika-todeb-javaspringbootcamp-teorik-odevler-gulbalasalamov
-
 ---
 
 ## Project Brief
@@ -27,6 +24,18 @@ This project omplementats Spring Boot framework with given dependencies:
 - Spring Security --> Highly customizable authentication and access-control framework for Spring applications.
 - Spring Data JPA --> Persists data in SQL stores with Java Persistence API using Spring Data and Hibernate
 - PostgreSQL Driver --> JDBC & R2DBC driver allowing Java programs to connect to PostgreSQL database using standart Java code
+
+---
+
+## API Documentation
+
+[Swagger](http://localhost:8085/swagger-ui/index.html)
+
+To access Swagger API doc, update baseUrl with your local server port. 
+
+> {{baseUrl}}/swagger-ui/index.html .
+
+![image](https://user-images.githubusercontent.com/19313466/183267107-6a1ac811-e0b5-4a54-bfc0-e2be8b9b74e6.png)
 
 ---
 
@@ -75,15 +84,3 @@ This project omplementats Spring Boot framework with given dependencies:
 To be updated.
 
 ---
-
-## Test
-
----
-
-To be updated
-
----
-
-## API Documentation
-[Swagger](http://localhost:8085/swagger-ui/index.html)
-
