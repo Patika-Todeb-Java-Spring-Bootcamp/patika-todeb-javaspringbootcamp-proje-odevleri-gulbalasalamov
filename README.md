@@ -81,3 +81,9 @@ To be updated.
 ---
 
 To be updated
+
+---
+
+## API Documentation
+[Swagger](http://localhost:8085/swagger-ui/index.html)
+
