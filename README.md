@@ -1,6 +1,6 @@
 # Project: Second-hand shopping app
 
-This repository is dedicated to demonstrate weekly progress of project implementation in bootcamp.
+This repository is dedicated to demonstrate weekly progress of project implementation in Java SpringBoot bootcamp.
 
 ---
 
