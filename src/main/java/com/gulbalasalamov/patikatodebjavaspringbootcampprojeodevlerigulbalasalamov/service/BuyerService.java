@@ -65,6 +65,7 @@ public class BuyerService {
         buyerById.ifPresent(buyerRepository::delete);
     }
 
+    //TODO: Known issue.
     public void addOrderToBuyer(Long buyerId, Long orderId) {
         Optional<Order> orderById = orderRepository.findById(orderId);
         Optional<Buyer> buyerById = findBuyerById(buyerId);

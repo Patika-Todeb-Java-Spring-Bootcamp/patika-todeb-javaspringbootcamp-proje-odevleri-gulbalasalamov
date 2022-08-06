@@ -2,6 +2,7 @@ package com.gulbalasalamov.patikatodebjavaspringbootcampprojeodevlerigulbalasala
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "buyer")
+@ApiModel(description = "This is a buyer object")
 public class  Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

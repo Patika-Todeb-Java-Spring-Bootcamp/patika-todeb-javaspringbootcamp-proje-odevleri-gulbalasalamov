@@ -61,4 +61,6 @@ public class BuyerController {
         buyerService.addOrderToBuyer(buyerId,orderId);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
 }

@@ -59,15 +59,15 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    public void addCategoryToItem(Long categoryId,Long itemId) {
-        var categoryById = findCategoryById(categoryId);
-        var itemById = itemRepository.findById(itemId);
-
-        categoryById.ifPresent(category -> {
-            Item item = itemById.get();
-            category.getItems().add(item);
-            category.setItems(category.getItems());
-            categoryRepository.save(category);
-        });
-    }
+//    public void addCategoryToItem(Long categoryId,Long itemId) {
+//        var categoryById = findCategoryById(categoryId);
+//        var itemById = itemRepository.findById(itemId);
+//
+//        categoryById.ifPresent(category -> {
+//            Item item = itemById.get();
+//            category.getItems().add(item);
+//            category.setItems(category.getItems());
+//            categoryRepository.save(category);
+//        });
+//    }
 }
